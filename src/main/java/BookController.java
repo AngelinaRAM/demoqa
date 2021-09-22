@@ -35,4 +35,12 @@ public class BookController {
         return given(requestSpecification).body(row).post("BookStore/v1/Books");
     }
 
+    public Response deleteBooks(String userId) {
+        return given(requestSpecification).delete("BookStore/v1/Books" + userId);
+    }
+
+    public Response putBook(String isbn) {
+        return given(requestSpecification).put("BookStore/v1/Books/" + isbn);
+    }
+
 }

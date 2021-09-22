@@ -1,17 +1,15 @@
 import org.apache.commons.lang3.RandomStringUtils;
 
-import java.util.Arrays;
-
 public class ListOfBooks {
 
     private String userId;
-    private String[] isbn;
+    private Isbn[] isbn;
 
     public String getUserId() {
         return userId;
     }
 
-    public String[] getIsbn() {
+    public Isbn[] getIsbn() {
         return isbn;
     }
 
@@ -19,16 +17,18 @@ public class ListOfBooks {
         this.userId = userId;
     }
 
-    public void setIsbn(String[] isbn) {
+    public void setIsbn(Isbn[] isbn) {
         this.isbn = isbn;
     }
 
-    public ListOfBooks(String userId, String[] isbn) {
-        this.userId = RandomStringUtils.randomAlphanumeric(8);
-        this.isbn = new Isbn[] {new }
+    public ListOfBooks(String userId, Isbn[] isbn) {
+        this.userId = userId;
+        this.isbn = isbn;
     }
 
-
-
+    public static ListOfBooks createListOfBooks() {
+        Isbn[] arr = Isbn.generateIsbn();
+        return new ListOfBooks("d64c697d-f03f-4a09-8d95-86b449b33481", arr);
+    }
 
 }

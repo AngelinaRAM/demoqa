@@ -1,3 +1,5 @@
+import org.apache.commons.lang3.RandomStringUtils;
+
 public class User {
 
     private String username;
@@ -23,4 +25,9 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
+    public static User createRandomUser() {
+        return new User(RandomStringUtils.randomAlphabetic(8), RandomStringUtils.randomAlphanumeric(8));
+    }
+
 }

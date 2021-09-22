@@ -2,14 +2,15 @@ import java.time.LocalDateTime;
 
 public class Book {
 
-private String title;
-private String subTitle;
-private String author;
-private LocalDateTime publish_date;
-private String publisher;
-private int pages;
-private String description;
-private String website;
+    private String isbn;
+    private String title;
+    private String subTitle;
+    private String author;
+    private LocalDateTime publish_date;
+    private String publisher;
+    private int pages;
+    private String description;
+    private String website;
 
     public String getTitle() {
         return title;
