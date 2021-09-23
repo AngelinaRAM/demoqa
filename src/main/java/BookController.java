@@ -25,7 +25,6 @@ public class BookController {
         this.mapper = new Gson();
     }
 
-    //методы из сваггера
 
     //Получаем список книг
     public Response getBooks() {
@@ -35,7 +34,11 @@ public class BookController {
     //Добавляем новую книжку
     public Response postBooks(ListOfBooks listOfBooks) {
         String row = mapper.toJson(listOfBooks);
-        return given(requestSpecification).body(row).post("BookStore/v1/Books");
+        return given(requestSpecification)
+                .header("Authorization",
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImFydGUiLCJwYXNzd29yZCI6IiEyMzRRd2VyIiwiaWF0IjoxNjMyNDEzODQ1fQ.WlESKpANlbvbkkvxtOR1HFBWsFi9P3viMeO6TKplQEw")
+                .body(row)
+                .post("BookStore/v1/Books");
     }
 
     //Удаляем все книжки у определенного пользователя
@@ -45,7 +48,11 @@ public class BookController {
 
     //Изменяем isbn в имеющейся книжке?
     public Response putBook(String isbn) {
-        return given(requestSpecification).put("BookStore/v1/Books/" + isbn);
+        return given(requestSpecification)
+                .header("Authorization",
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImFydGUiLCJwYXNzd29yZCI6IiEyMzRRd2VyIiwiaWF0IjoxNjMyNDEzODQ1fQ.WlESKpANlbvbkkvxtOR1HFBWsFi9P3viMeO6TKplQEw")
+                .header("Content-Type", "application/json")
+                .put("BookStore/v1/Books/" + isbn);
     }
 
     //Получаем информацию по книге по isbn
