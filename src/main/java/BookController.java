@@ -5,6 +5,7 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+
 import static io.restassured.RestAssured.given;
 
 public class BookController {
@@ -26,21 +27,35 @@ public class BookController {
 
     //методы из сваггера
 
+    //Получаем список книг
     public Response getBooks() {
         return given(requestSpecification).get("BookStore/v1/Books");
     }
 
-    public  Response postBooks(ListOfBooks listOfBooks) {
+    //Добавляем новую книжку
+    public Response postBooks(ListOfBooks listOfBooks) {
         String row = mapper.toJson(listOfBooks);
         return given(requestSpecification).body(row).post("BookStore/v1/Books");
     }
 
+    //Удаляем все книжки у определенного пользователя
     public Response deleteBooks(String userId) {
         return given(requestSpecification).delete("BookStore/v1/Books" + userId);
     }
 
+    //Изменяем isbn в имеющейся книжке?
     public Response putBook(String isbn) {
         return given(requestSpecification).put("BookStore/v1/Books/" + isbn);
+    }
+
+    //Получаем информацию по книге по isbn
+    public Response getBook(String isbn) {
+        return given(requestSpecification).get("BookStore/v1/Book?ISBN=" + isbn);
+    }
+
+    //Удалить книжку по isbn
+    public Response deleteBookByIsbn(String isbn, String userId) {
+        return given(requestSpecification).delete("BookStore/v1/Book");
     }
 
 }
