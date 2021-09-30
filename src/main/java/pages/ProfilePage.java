@@ -1,7 +1,14 @@
 package pages;
 
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Conditional;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class ProfilePage {
 
@@ -31,6 +38,14 @@ public class ProfilePage {
 
     public static void gotoStore() {
         gotoStoreButton.click();
+    }
+
+    public static void booksNotDetected() {
+        $$(".rt-table").shouldHave(CollectionCondition.size(0)); //Должен иметь 0 элементов
+    }
+
+    public static void bookNotPresent(String bookName) {
+        $(By.xpath(String.format(".//span[@id='see-book-%s']", bookName))).shouldNotHave(Condition.visible);
     }
 
 }

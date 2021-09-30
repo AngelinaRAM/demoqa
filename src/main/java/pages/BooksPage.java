@@ -1,20 +1,15 @@
 package pages;
+import com.codeborne.selenide.CollectionCondition;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class BooksPage {
 
     @FindBy(xpath = ".//input[@id='searchBox']")
     private static WebElement searchBoxInput;
-
-    @FindBy(xpath = ".//span[@id='see-book-Git Pocket Guide']")
-    private static WebElement seeGitBookLink;
-
-    @FindBy(xpath = ".//span[@id='see-book-Speaking JavaScript']")
-    private static WebElement seeSpeakingJavaScriptBookLink;
-
-    @FindBy(xpath = ".//span[@id='see-book-Learning JavaScript Design Patterns']")
-    private static WebElement seeLearningJavaScriptDesignPatternsLink;
 
     @FindBy(xpath = ".//button[text()='Back To Book Store']")
     private static WebElement backToBookStoreButton;
@@ -22,21 +17,8 @@ public class BooksPage {
     @FindBy(xpath = ".//button[text()='Add To Your Collection']")
     private static WebElement addToYourCollectionButton;
 
-
     public static void inputInSearchBox(String keyword) {
         searchBoxInput.sendKeys(keyword);
-    }
-
-    public static void seeGitBookLink() {
-        seeGitBookLink.click();
-    }
-
-    public static void seeSpeakingJavaScriptBookLink() {
-        seeSpeakingJavaScriptBookLink.click();
-    }
-
-    public static void seeLearningJavaScriptDesignPatternsLink() {
-        seeLearningJavaScriptDesignPatternsLink.click();
     }
 
     public static void backToBookStore() {
@@ -47,5 +29,12 @@ public class BooksPage {
         addToYourCollectionButton.click();
     }
 
+    public static void viewSearchResults(String bookName) {
+        $$(".rt-table").shouldHave(CollectionCondition.textsInAnyOrder(bookName));
+    }
+
+    public static void seeBookInfo(String bookName) {
+        $(By.xpath(String.format(".//span[@id='see-book-%s']", bookName))).click();
+    }
 
 }
