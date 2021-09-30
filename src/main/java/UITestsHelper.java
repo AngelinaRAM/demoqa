@@ -16,7 +16,6 @@ public class UITestsHelper {
     public static void setWebDriver(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         webDriver = new ChromeDriver();
-        webDriver.get(URL);
         ChromeOptions chromeOptions = new ChromeOptions();
         //chromeOptions.addExtensions(new File("src/main/resources/Crx4Chrome.com.crx"));
         webDriver.manage().window().maximize();
