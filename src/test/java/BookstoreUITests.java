@@ -1,6 +1,5 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Modal;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.AuthPage;
@@ -21,13 +20,6 @@ public class BookstoreUITests {
         Configuration.timeout = 3000;
         modal = new Modal(webdriver().driver());
     }
-
-    /*
-    @AfterAll
-    public static void afterAll() {
-        UITestsHelper.getWebDriver().quit();
-    }
-    */
 
     @Test
     public void loginTest() {
